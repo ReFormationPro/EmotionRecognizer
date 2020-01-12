@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">EmotionRecorder</string>
+    <string name="title_activity_bar_chart">BarChart</string>
+</resources>
