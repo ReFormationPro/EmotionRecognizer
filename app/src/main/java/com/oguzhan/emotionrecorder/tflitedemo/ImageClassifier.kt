@@ -142,7 +142,7 @@ internal constructor(activity: Activity) {
     }
 
     /** Classifies a frame from the preview stream.  */
-    internal fun classifyFrame(bitmap: Bitmap, builder: SpannableStringBuilder): SpannableStringBuilder {
+    internal fun classifyFrame(bitmap: Bitmap, builder: SpannableStringBuilder): HashMap<String, Float>? {
         if (tflite == null) {
             Log.e(TAG, "Image classifier has not been initialized; Skipped.")
             builder.append(SpannableString("Uninitialized Classifier."))
@@ -166,7 +166,12 @@ internal constructor(activity: Activity) {
         val span = SpannableString("$duration ms")
         span.setSpan(ForegroundColorSpan(android.graphics.Color.LTGRAY), 0, span.length, 0)
         builder.append(span)
-        return builder
+
+        val result = HashMap<String, Float>()
+        for (i in 0 until labelList.size) {
+            result.put(labelList[i], getProbability(i))
+        }
+        return result
     }
 
     internal fun applyFilter() {

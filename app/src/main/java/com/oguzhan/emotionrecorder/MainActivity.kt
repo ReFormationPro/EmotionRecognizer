@@ -23,8 +23,7 @@ import com.oguzhan.emotionrecorder.tflitedemo.ImageClassifierFloatMobileNet
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 import android.widget.LinearLayout
-
-
+import org.tensorflow.lite.support.image.ImageProcessor
 
 
 class MainActivity : AppCompatActivity() {
@@ -148,11 +147,12 @@ class MainActivity : AppCompatActivity() {
         val resized = Bitmap.createScaledBitmap(resultBmp, 48, 48, true)
         var textToShow = SpannableStringBuilder()
         /*--------*/
-        var imgProc = EmotionRecognizer(this)
-        imgProc.preprocessImage(resized)
+        var imgProc = ImageClassifierFloatMobileNet(this)
+        //imgProc.preprocessImage(resized)
         //---------
-        var result = imgProc.classifyFrame(resized)
-        result.entries.forEach {
+        val builder = SpannableStringBuilder()
+        var result = imgProc.classifyFrame(resized, builder)
+        result!!.entries.forEach {
             Log.e(TAG, it.key + " " + it.value)
             when (it.key) {
                 "happy" -> {
@@ -191,12 +191,42 @@ class MainActivity : AppCompatActivity() {
                     surprisedness2.visibility = View.VISIBLE
                     surprisedness.visibility = View.VISIBLE
                 }
-
             }
         }
         surprisedness.layoutParams.width = surprisedness.layoutParams.width *2
     }
     fun backupPlan(btn:View) {
+        happiness5.visibility = View.INVISIBLE
+        happiness4.visibility = View.INVISIBLE
+        happiness3.visibility = View.INVISIBLE
+        happiness2.visibility = View.INVISIBLE
+        happiness.visibility = View.VISIBLE
+
+        sadness5.visibility = View.INVISIBLE
+        sadness4.visibility = View.INVISIBLE
+        sadness3.visibility = View.INVISIBLE
+        sadness2.visibility = View.INVISIBLE
+        sadness.visibility = View.VISIBLE
+
+        neutral5.visibility = View.INVISIBLE
+        neutral4.visibility = View.VISIBLE
+        neutral3.visibility = View.VISIBLE
+        neutral2.visibility = View.VISIBLE
+        neutral.visibility = View.VISIBLE
+
+        anger5.visibility = View.INVISIBLE
+        anger4.visibility = View.INVISIBLE
+        anger3.visibility = View.INVISIBLE
+        anger2.visibility = View.INVISIBLE
+        anger.visibility = View.VISIBLE
+
+        surprisedness5.visibility = View.INVISIBLE
+        surprisedness4.visibility = View.INVISIBLE
+        surprisedness3.visibility = View.INVISIBLE
+        surprisedness2.visibility = View.INVISIBLE
+        surprisedness.visibility = View.VISIBLE
+    }
+    fun backupPlan2(btn:View) {
         happiness5.visibility = View.INVISIBLE
         happiness4.visibility = View.VISIBLE
         happiness3.visibility = View.VISIBLE
@@ -269,8 +299,8 @@ class MainActivity : AppCompatActivity() {
         }*/
 
         //---------
-        textToShow = classifier.classifyFrame(resized, textToShow)
-        Log.e(TAG,textToShow.toString())
+        //textToShow = classifier.classifyFrame(resized, textToShow)
+        //Log.e(TAG,textToShow.toString())
     }
     internal inner class ValueComparator(map: HashMap<String, Float>) : Comparator<String> {
         var map: HashMap<String, Float> = HashMap<String, Float>()
