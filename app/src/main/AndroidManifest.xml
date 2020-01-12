@@ -31,9 +31,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service
+        <!--service
             android:name=".TriggerService"
-            android:exported="false"></service>
+            android:exported="false"></service-->
 
         <activity
             android:name=".GraphActivity"
@@ -49,10 +49,10 @@
 
         <!--service
             android:name=".deprecated.EmotionCam"
-            android:exported="false" />
+            android:exported="false" /-->
         <service
             android:name=".CameraService"
-            android:exported="false" /-->
+            android:exported="false" />
     </application>
 
 </manifest>

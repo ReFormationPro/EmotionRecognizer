@@ -26,7 +26,10 @@ const val EXTRA_PARAM2 = "com.oguzhan.emotionrecorder.extra.PARAM2"
  * TODO: Customize class - update intent actions and extra parameters.
  */
 class TriggerService : IntentService("TriggerService") {
-    private var mBackgroundThread: HandlerThread? = null
+    override fun onHandleIntent(p0: Intent?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+    /*private var mBackgroundThread: HandlerThread? = null
     private var mBackgroundHandler: Handler? = null
     private var mIsRecording: Boolean = true
     private lateinit var mCameraHelper: CameraService
@@ -122,5 +125,5 @@ class TriggerService : IntentService("TriggerService") {
                 .setContentIntent(pendingIntent)
                 .build()
         )
-    }
+    }*/
 }

@@ -74,7 +74,7 @@ class EmotionRecognizer(val mContext: Context) {
         mFaceDetector.release()
     }
     // ---- Recognition Code ------
-    private fun preprocessImage(bitmap: Bitmap, numBytesPerChannel: Int = 4) {
+    fun preprocessImage(bitmap: Bitmap, numBytesPerChannel: Int = 4) {
         mFilterLabelProbability = Array(3) { FloatArray(7){0f} }
         mLabelProbArray = Array(1) { FloatArray(mLabelList.size) }
         mImgData = ByteBuffer.allocateDirect(mImageWidth * mImageHeight * numBytesPerChannel)
@@ -137,7 +137,7 @@ class EmotionRecognizer(val mContext: Context) {
             setProbability(j, mFilterLabelProbability!![mFilterStages - 1][j])
         }
     }
-    private fun classifyFrame(bitmap: Bitmap): HashMap<String, Float> {
+    fun classifyFrame(bitmap: Bitmap): HashMap<String, Float> {
         if (tflite == null) {
             Log.e(TAG, "Image classifier has not been initialized; Skipped.")
         }
@@ -145,7 +145,7 @@ class EmotionRecognizer(val mContext: Context) {
         tflite!!.run(mImgData, mLabelProbArray)
         applyFilter()
         val result = HashMap<String, Float>()
-        for (i in 0 until mLabelProbArray!!.size+1) {
+        for (i in 0 until mLabelList.size) {
             result.put(mLabelList[i], mLabelProbArray!![0][i])
         }
         //------DEBUG-------
@@ -161,7 +161,7 @@ class EmotionRecognizer(val mContext: Context) {
                 str1 = mLabelList[i]
             }
         }
-        Log.e("TEST", "Max: " + max1 + " Str:" + str1 + ", Max: " + max2 + " Str: " + str2)
+        Log.e("TEST", "Max: " + max1 + " Str:" + str1 + ", Max: " + max2 + " Str: " + str2 + " " + result.size)
         return result
     }
     private fun getProbability(labelIndex: Int): Float {

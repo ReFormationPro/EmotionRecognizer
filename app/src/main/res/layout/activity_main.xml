@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:onClick="AnalyzeLatest"
+        android:onClick="Newest"
         android:text="Analyze Latest Capture"
         app:layout_constraintBottom_toTopOf="@+id/TAKE"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:onClick="takeAPicture"
+        android:onClick="startClick"
         android:text="Take a picture"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,8 +52,9 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
-        android:onClick="openGraph"
+        android:onClick="backupPlan"
         android:text="STATISTICS"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -62,23 +63,434 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="500px"
+        android:clickable="true"
+        android:focusable="auto"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/START"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@mipmap/ic_launcher_round" />
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        android:singleLine="false"
-        android:text="Angry:\n Disgust:\n Scared:\n Happy:\n Sad:\n Surprised:\n Neutral:"
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:text="Happiness:" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/happiness"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    android:layout_weight="1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/holo_orange_light"
+                    tools:srcCompat="@android:color/holo_orange_light" />
+
+                <ImageView
+                    android:id="@+id/happiness2"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    android:layout_weight="1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/happiness"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/holo_orange_light"
+                    tools:srcCompat="@android:color/holo_orange_light" />
+
+                <ImageView
+                    android:id="@+id/happiness3"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    android:layout_weight="1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/happiness2"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/holo_orange_light"
+                    tools:srcCompat="@android:color/holo_orange_light" />
+
+                <ImageView
+                    android:id="@+id/happiness4"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    android:layout_weight="1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/happiness3"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/holo_orange_light"
+                    tools:srcCompat="@android:color/holo_orange_light" />
+
+                <ImageView
+                    android:id="@+id/happiness5"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    android:layout_weight="1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/happiness4"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/holo_orange_light"
+                    tools:srcCompat="@android:color/holo_orange_light" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:text="Anger:" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/anger"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/holo_red_dark"
+                    tools:srcCompat="@android:color/holo_red_dark" />
+
+                <ImageView
+                    android:id="@+id/anger2"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/anger"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/holo_red_dark"
+                    tools:srcCompat="@android:color/holo_red_dark" />
+
+                <ImageView
+                    android:id="@+id/anger3"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/anger2"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/holo_red_dark"
+                    tools:srcCompat="@android:color/holo_red_dark" />
+
+                <ImageView
+                    android:id="@+id/anger4"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/anger3"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/holo_red_dark"
+                    tools:srcCompat="@android:color/holo_red_dark" />
+
+                <ImageView
+                    android:id="@+id/anger5"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/anger4"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/holo_red_dark"
+                    tools:srcCompat="@android:color/holo_red_dark" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewA"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:text="Sadness:" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/sadness"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/holo_blue_dark"
+                    tools:srcCompat="@android:color/holo_blue_dark" />
+
+                <ImageView
+                    android:id="@+id/sadness2"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/sadness"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/holo_blue_dark"
+                    tools:srcCompat="@android:color/holo_blue_dark" />
+
+                <ImageView
+                    android:id="@+id/sadness3"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/sadness2"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/holo_blue_dark"
+                    tools:srcCompat="@android:color/holo_blue_dark" />
+
+                <ImageView
+                    android:id="@+id/sadness4"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/sadness3"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/holo_blue_dark"
+                    tools:srcCompat="@android:color/holo_blue_dark" />
+
+                <ImageView
+                    android:id="@+id/sadness5"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/sadness4"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/holo_blue_dark"
+                    tools:srcCompat="@android:color/holo_blue_dark" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewC"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:text="Surprisedness:" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/surprisedness"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/holo_green_dark"
+                    tools:srcCompat="@android:color/holo_green_dark" />
+
+                <ImageView
+                    android:id="@+id/surprisedness2"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/surprisedness"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/holo_green_dark"
+                    tools:srcCompat="@android:color/holo_green_dark" />
+
+                <ImageView
+                    android:id="@+id/surprisedness3"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/surprisedness2"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/holo_green_dark"
+                    tools:srcCompat="@android:color/holo_green_dark" />
+
+                <ImageView
+                    android:id="@+id/surprisedness4"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/surprisedness3"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/holo_green_dark"
+                    tools:srcCompat="@android:color/holo_green_dark" />
+
+                <ImageView
+                    android:id="@+id/surprisedness5"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/surprisedness4"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/holo_green_dark"
+                    tools:srcCompat="@android:color/holo_green_dark" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewE"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:text="Neutral" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/neutral"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/darker_gray"
+                    tools:srcCompat="@android:color/darker_gray" />
+
+                <ImageView
+                    android:id="@+id/neutral2"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/neutral"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/darker_gray"
+                    tools:srcCompat="@android:color/darker_gray" />
+
+                <ImageView
+                    android:id="@+id/neutral3"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/neutral2"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/darker_gray"
+                    tools:srcCompat="@android:color/darker_gray" />
+
+                <ImageView
+                    android:id="@+id/neutral4"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/neutral3"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/darker_gray"
+                    tools:srcCompat="@android:color/darker_gray" />
+
+                <ImageView
+                    android:id="@+id/neutral5"
+                    android:layout_width="50dp"
+                    android:layout_height="100px"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/neutral4"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:color/darker_gray"
+                    tools:srcCompat="@android:color/darker_gray" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

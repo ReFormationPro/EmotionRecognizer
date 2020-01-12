@@ -1,8 +1,6 @@
-package com.oguzhan.emotionrecorder
+package com.oguzhan.emotionrecorder.Another
 
 import android.annotation.SuppressLint
-import android.app.IntentService
-import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.graphics.ImageFormat
@@ -13,23 +11,10 @@ import android.os.*
 import android.util.Log
 import java.io.*
 import java.util.*
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.R.attr.name
-import android.app.PendingIntent
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.R.attr.name
-import androidx.core.app.NotificationCompat
-import android.content.IntentFilter
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.R.attr.name
-import android.content.BroadcastReceiver
 
 
 class CameraServiceClass(mContext: Context) {
-    private lateinit var mCameraManager: CameraManager
+    private var mCameraManager: CameraManager
     private var mCamera: CameraDevice? = null
     private val TAG = "CameraService"
     private val mImageReader = ImageReader.newInstance(640, 480, ImageFormat.JPEG, 1)
@@ -134,8 +119,8 @@ class CameraServiceClass(mContext: Context) {
             Log.e(TAG, e.toString())
         }
     }
-    private fun getJpegOrientation(c: CameraCharacteristics, deviceOrientation: Int): Int {
-        var deviceOrientation = deviceOrientation
+    private fun getJpegOrientation(c: CameraCharacteristics, deviceOrientation_par: Int): Int {
+        var deviceOrientation = deviceOrientation_par
         if (deviceOrientation == android.view.OrientationEventListener.ORIENTATION_UNKNOWN) return 0
         val sensorOrientation = c.get(CameraCharacteristics.SENSOR_ORIENTATION)!!
         // Round device orientation to a multiple of 90
