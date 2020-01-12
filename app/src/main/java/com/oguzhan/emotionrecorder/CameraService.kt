@@ -69,7 +69,7 @@ class CameraService(mContext: Context) {
                             Log.i(TAG, "Capture Completed")
                             Intent().also { intent ->
                                 intent.setAction(MESSAGE_CAPTURE_COMPLETED)
-                                sendBroadcast(intent)
+                                //sendBroadcast(intent)
                             }
 
                         }
