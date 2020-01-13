@@ -13,10 +13,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-package com.oguzhan.emotionrecorder.tflitedemo
+package com.oguzhan.emotionrecorder.me.ndres.tflitedemo
 
 import android.app.Activity
-import android.content.res.AssetFileDescriptor
 import android.graphics.Bitmap
 import android.os.SystemClock
 import android.text.SpannableString
@@ -38,8 +37,7 @@ import java.util.Comparator
 import java.util.PriorityQueue
 import org.tensorflow.lite.Delegate
 import org.tensorflow.lite.Interpreter
-import java.util.Map
-
+//Modification: Converted to Kotlin from Java
 /**
  * Classifies images with Tensorflow Lite.
  */
@@ -131,11 +129,6 @@ internal constructor(activity: Activity) {
                     * DIM_PIXEL_SIZE
                     * numBytesPerChannel
         )
-        Log.e(TAG, ""+DIM_BATCH_SIZE
-                * imageSizeX
-                * imageSizeY
-                * DIM_PIXEL_SIZE
-                * numBytesPerChannel)
         imgData!!.order(ByteOrder.nativeOrder())
         filterLabelProbArray = Array(FILTER_STAGES) { FloatArray(numLabels) }
         Log.e(TAG, "Created a Tensorflow Lite Image Classifier with " + FloatArray(numLabels)[0] + " " + FloatArray(numLabels)[1] + " "+ FloatArray(numLabels)[2])
@@ -205,7 +198,8 @@ internal constructor(activity: Activity) {
 
     fun useGpu() {
         if (gpuDelegate == null && GpuDelegateHelper.isGpuDelegateAvailable) {
-            gpuDelegate = GpuDelegateHelper.createGpuDelegate()
+            gpuDelegate =
+                GpuDelegateHelper.createGpuDelegate()
             tfliteOptions.addDelegate(gpuDelegate)
             recreateInterpreter()
         }
@@ -283,6 +277,7 @@ internal constructor(activity: Activity) {
 
     /** Prints top-K labels, to be shown in UI as the results.  */
     private fun printTopKLabels(builder: SpannableStringBuilder) {
+        //Modification: Removed sorting. Only prints max 2 features now.
         var max1 = 0f
         var max2 = 0f
         var str1 = ""
@@ -305,25 +300,6 @@ internal constructor(activity: Activity) {
         }
         Log.e(TAG, "Max: " + max1 + " Str:" + str1 + ", Max: " + max2 + " Str: " + str2)
         return
-        val size = sortedLabels.size
-        for (i in 0 until size) {
-            val label = sortedLabels.poll()
-            val span = SpannableString(String.format("%s: %4.2f\n", label.key, label.value))
-            val color: Int
-            // Make it white when probability larger than threshold.
-            if (label.value > GOOD_PROB_THRESHOLD) {
-                color = android.graphics.Color.WHITE
-            } else {
-                color = SMALL_COLOR
-            }
-            // Make first item bigger.
-            if (i == size - 1) {
-                val sizeScale = if (i == size - 1) 1.25f else 0.8f
-                span.setSpan(RelativeSizeSpan(sizeScale), 0, span.length, 0)
-            }
-            span.setSpan(ForegroundColorSpan(color), 0, span.length, 0)
-            builder.insert(0, span)
-        }
     }
 
     /**

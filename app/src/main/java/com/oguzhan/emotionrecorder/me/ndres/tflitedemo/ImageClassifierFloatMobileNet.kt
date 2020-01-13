@@ -13,14 +13,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-package com.oguzhan.emotionrecorder.tflitedemo
+package com.oguzhan.emotionrecorder.me.ndres.tflitedemo
 
 import android.app.Activity
 import android.util.Log
-import java.io.IOException
 
 /** This classifier works with the float MobileNet model.  */
-//class ImageClassifierFloatMobileNet
+//Modification: Converted to Kotlin from Java
 /**
  * Initializes an `ImageClassifierFloatMobileNet`.
  *

@@ -18,7 +18,10 @@ import androidx.core.app.NotificationCompat
 import android.content.IntentFilter
 import android.content.BroadcastReceiver
 
-
+/**
+ * Camera Helper + Trigger Service hybrid.
+ * We had to revert to this for demo.
+ */
 class CameraService : IntentService("CameraService") {
     private lateinit var mCameraManager: CameraManager
     private var mCamera: CameraDevice? = null

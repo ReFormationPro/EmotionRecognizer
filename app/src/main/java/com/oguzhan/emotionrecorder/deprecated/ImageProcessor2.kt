@@ -18,7 +18,7 @@ import org.tensorflow.lite.support.common.TensorProcessor
 import java.lang.Exception
 import java.nio.ByteBuffer
 
-
+//Image
 class ImageProcessor2(val mContext: Context) {
     private val mImageWidth = 48
     private val mImageHeight = 48

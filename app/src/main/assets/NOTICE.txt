@@ -1,0 +1,5 @@
+converted_model.tflite and labels_emotion.txt are retrieved from
+https://raw.githubusercontent.com/EliotAndres/tensorflow-2-run-on-mobile-devices-ios-android-browser/master/tf_lite_android/demo/app/src/main/assets/labels_emotion.txt
+https://raw.githubusercontent.com/EliotAndres/tensorflow-2-run-on-mobile-devices-ios-android-browser/master/tf_lite_android/demo/app/src/main/assets/converted_model.tflite
+labels_mobilenet_quant_v1_224.txt and mobilenet_quant_v1_1.0_224_quant.tflite are retrieved from
+https://storage.googleapis.com/download.tensorflow.org/models/tflite/mobilenet_v1_1.0_224_quant_and_labels.zip

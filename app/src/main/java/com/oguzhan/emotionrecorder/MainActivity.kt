@@ -9,21 +9,14 @@ import android.os.*
 import android.text.SpannableStringBuilder
 import android.util.Log
 import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.vision.Frame
 import com.google.android.gms.vision.face.FaceDetector
-import com.oguzhan.emotionrecorder.CameraService
-import com.oguzhan.emotionrecorder.EmotionRecognizer
 //import sun.awt.windows.ThemeReader.getPosition
-import com.oguzhan.emotionrecorder.R
 import com.oguzhan.emotionrecorder.deprecated.ImageProcessor2
-import com.oguzhan.emotionrecorder.tflitedemo.ImageClassifierFloatMobileNet
+import com.oguzhan.emotionrecorder.me.ndres.tflitedemo.ImageClassifierFloatMobileNet
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
-import android.widget.LinearLayout
-import org.tensorflow.lite.support.image.ImageProcessor
 
 
 class MainActivity : AppCompatActivity() {
@@ -147,11 +140,14 @@ class MainActivity : AppCompatActivity() {
         val resized = Bitmap.createScaledBitmap(resultBmp, 48, 48, true)
         var textToShow = SpannableStringBuilder()
         /*--------*/
-        var imgProc = ImageClassifierFloatMobileNet(this)
+        var imgProc =
+            ImageClassifierFloatMobileNet(this)
         //imgProc.preprocessImage(resized)
         //---------
         val builder = SpannableStringBuilder()
         var result = imgProc.classifyFrame(resized, builder)
+        //TODO: Results are not trustworthy. Keep this way till we fix Facial Expression Data settings for tensorflow...
+        //TODO: Find a way to set width of ImageView. Use this for demo for now.
         result!!.entries.forEach {
             Log.e(TAG, it.key + " " + it.value)
             when (it.key) {
@@ -193,40 +189,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        surprisedness.layoutParams.width = surprisedness.layoutParams.width *2
     }
     fun backupPlan(btn:View) {
-        happiness5.visibility = View.INVISIBLE
-        happiness4.visibility = View.INVISIBLE
-        happiness3.visibility = View.INVISIBLE
-        happiness2.visibility = View.INVISIBLE
-        happiness.visibility = View.VISIBLE
-
-        sadness5.visibility = View.INVISIBLE
-        sadness4.visibility = View.INVISIBLE
-        sadness3.visibility = View.INVISIBLE
-        sadness2.visibility = View.INVISIBLE
-        sadness.visibility = View.VISIBLE
-
-        neutral5.visibility = View.INVISIBLE
-        neutral4.visibility = View.VISIBLE
-        neutral3.visibility = View.VISIBLE
-        neutral2.visibility = View.VISIBLE
-        neutral.visibility = View.VISIBLE
-
-        anger5.visibility = View.INVISIBLE
-        anger4.visibility = View.INVISIBLE
-        anger3.visibility = View.INVISIBLE
-        anger2.visibility = View.INVISIBLE
-        anger.visibility = View.VISIBLE
-
-        surprisedness5.visibility = View.INVISIBLE
-        surprisedness4.visibility = View.INVISIBLE
-        surprisedness3.visibility = View.INVISIBLE
-        surprisedness2.visibility = View.INVISIBLE
-        surprisedness.visibility = View.VISIBLE
-    }
-    fun backupPlan2(btn:View) {
         happiness5.visibility = View.INVISIBLE
         happiness4.visibility = View.VISIBLE
         happiness3.visibility = View.VISIBLE
@@ -281,7 +245,8 @@ class MainActivity : AppCompatActivity() {
             Math.round(face.getWidth() + face.getPosition().x),
             Math.round(face.getPosition().y + face.getHeight())
         )
-        val classifier = ImageClassifierFloatMobileNet(this)
+        val classifier =
+            ImageClassifierFloatMobileNet(this)
 
         val resultBmp = Bitmap.createBitmap(
             rect.right - rect.left,

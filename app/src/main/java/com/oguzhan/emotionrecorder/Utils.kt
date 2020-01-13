@@ -8,6 +8,7 @@ import java.lang.Exception
 
 class Utils {
     companion object {
+        //Berf's Code
         fun getForegroundApplication(context: Context): String {
             val activityManager = context.getSystemService(AppCompatActivity.ACTIVITY_SERVICE) as ActivityManager
             val packageManager = context.getPackageManager()

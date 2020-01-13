@@ -16,7 +16,11 @@ import org.tensorflow.lite.support.common.TensorProcessor
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
-
+/**
+ * Tensorflow Lite Support Example modified to work with Facial Expression Data.
+ * Original image processor. We could not get it working with Facial Expression Data for lack of information
+ * about Facial Expression Data.
+ */
 class ImageProcessor(val mContext: Context) {
     private val mImageWidth = 48
     private val mImageHeight = 48

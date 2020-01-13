@@ -15,7 +15,9 @@ import android.util.Log
 import android.view.Surface
 import java.io.*
 
-
+/**
+ * Camera Helper Service without a trigger. Could not make it to demo.
+ */
 class EmotionCam : IntentService("EmotionCamService") {
     private var mCamera: CameraDevice? = null
     lateinit var mCameraManager: CameraManager

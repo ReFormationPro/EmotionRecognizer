@@ -21,9 +21,7 @@ const val EXTRA_PARAM1 = "com.oguzhan.emotionrecorder.extra.PARAM1"
 const val EXTRA_PARAM2 = "com.oguzhan.emotionrecorder.extra.PARAM2"
 
 /**
- * An [IntentService] subclass for handling asynchronous task requests in
- * a service on a separate handler thread.
- * TODO: Customize class - update intent actions and extra parameters.
+ * Background service for automatic image taking. Disabled because not ready for demo.
  */
 class TriggerService : IntentService("TriggerService") {
     override fun onHandleIntent(p0: Intent?) {

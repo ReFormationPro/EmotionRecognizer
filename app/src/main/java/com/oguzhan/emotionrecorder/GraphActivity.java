@@ -39,6 +39,9 @@ import com.github.mikephil.charting.model.GradientColor;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Usage analysis graph test. Incomplete.
+ */
 public class GraphActivity extends AppCompatActivity {
 
     private BarChart chart;
